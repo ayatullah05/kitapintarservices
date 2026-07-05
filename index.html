@@ -189,20 +189,26 @@
             background-color: #f3f4f6;
         }
         
-        .avatar-placeholder {
-            max-width: 300px;
-            width: 80%;
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
+        /* ==========================================================================
+   PERBAIKAN AVATAR RESPONSIF
+   ========================================================================== */
+.avatar-placeholder {
+    width: 280px;          /* Mengunci ukuran lingkaran di desktop */
+    height: 280px;         /* Memastikan tingginya sama agar bulat sempurna */
+    max-width: 100%;       /* Supaya mengecil otomatis jika layar HP lebih kecil dari 280px */
+    aspect-ratio: 1 / 1;   /* Menjaga rasio kotak 1:1 di semua ukuran layar */
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;        /* Otomatis rata tengah saat mode mobile */
+}
 
-        .avatar-placeholder img {
-            width: 52vh;
-            height:40vh ;
-            display: block;
-        }
-
+.avatar-placeholder img {
+    width: 100%;           /* Mengikuti lebar container lingkaran */
+    height: 100%;          /* Mengikuti tinggi container lingkaran */
+    object-fit: cover;     /* Memotong gambar secara proporsional agar tidak gepeng */
+    display: block;
+}
         /* ==========================================================================
            GLOBAL SECTION SETTINGS
            ========================================================================== */
