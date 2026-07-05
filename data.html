@@ -13,13 +13,81 @@
               color: #333;
           }
           .container {
-              max-width: 600px;
-              margin: 0 auto;
-              background: #fff;
-              padding: 30px;
-              border-radius: 8px;
-              box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-          }
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
+
+
+    header {
+        background-color: #ffffff;
+        border-bottom: 1px solid #e2e8f0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 15px 0;
+    }
+    
+    .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    
+    .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo-area img {
+        max-height: 40px;
+        width: auto;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #4f46e5;
+        text-decoration: none;
+        margin: 0;
+    }
+    
+    .nav-menu {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .nav-menu a {
+        color: #4a5568;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: color 0.2s ease;
+    }
+    
+    .nav-menu a:hover {
+        color: #4f46e5;
+    }
+    
+    .nav-menu a.cta-nav {
+        background-color: #4f46e5;
+        color: #ffffff;
+        padding: 8px 14px;
+        border-radius: 6px;
+    }
+    
+    .nav-menu a.cta-nav:hover {
+        background-color: #4338ca;
+    }
+
+
           h2 {
               text-align: center;
               color: #2c3e50;
@@ -76,6 +144,22 @@
       </style>
   </head>
   <body>
+    <header>
+    <div class="container">
+        <div class="nav-wrapper">
+            <div class="logo-area">
+                <img alt="Logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmM2xZX3OlKvgRSIdtACsuZqs4bB45YO3ojMw3ear7Xda2YKbbU3k_SubYu0o3oLTY9Bbiv66BAVzbzGyOZq65SkEcm21o8-CFXtX38phvjsvm5hcohPZjTTVLQUtDVQ8q7gooY0SdkSh4Kf87HJQfcsmmKO8931w-ssP6kkO27MIYGC26tSFBiwvV8zox/s50/kitapintar%20services%20(2).gif" />
+                <h1 class="logo">KitaPintar Electronic Repair Services</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="https://ayatullah05.github.io/kitapintarservices/#about">Tentang</a>
+                <a href="https://ayatullah05.github.io/kitapintarservices/#portfolio">Riwayat Perbaikan</a>
+                <a href="https://ayatullah05.github.io/kitapintarservices/#services">Layanan</a>
+                <a class="cta-nav" href="data.html">Konsultasi</a>
+            </div>
+        </div>
+    </div>
+</header>
 
   <div class="container">
       <h2>Formulir Servis Panggilan</h2>
@@ -122,7 +206,7 @@
               <textarea id="keluhan" name="keluhan" placeholder="Ceritakan detail kerusakan barang Anda..." required></textarea>
           </div>
 
-          <button type="submit" id="submitBtn">Kirim Permintaan Servis</button>
+          <button type="submit" id="submitBtn">Kirim Permintaan Services</button>
           <div class="loading" id="loadingMsg">Sedang mengirim data, mohon tunggu...</div>
       </form>
   </div>
