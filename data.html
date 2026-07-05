@@ -1,150 +1,202 @@
 <!DOCTYPE html>
-  <html lang="id">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Aplikasi Layanan Servis Elektronik Panggilan</title>
-      <style>
-          body {
-              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-              background-color: #f4f7f6;
-              margin: 0;
-              padding: 20px;
-              color: #333;
-          }
-          .container {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 15px;
-        box-sizing: border-box;
-    }
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Layanan Servis Elektronik Panggilan</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
 
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
 
-    header {
-        background-color: #ffffff;
-        border-bottom: 1px solid #e2e8f0;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        padding: 15px 0;
-    }
-    
-    .nav-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    
-    .logo-area {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .logo-area img {
-        max-height: 40px;
-        width: auto;
-    }
+        .logo-area img {
+            max-height: 40px;
+            width: auto;
+        }
 
-    .logo {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #4f46e5;
-        text-decoration: none;
-        margin: 0;
-    }
-    
-    .nav-menu {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        flex-wrap: wrap;
-    }
-    
-    .nav-menu a {
-        color: #4a5568;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 0.9rem;
-        transition: color 0.2s ease;
-    }
-    
-    .nav-menu a:hover {
-        color: #4f46e5;
-    }
-    
-    .nav-menu a.cta-nav {
-        background-color: #4f46e5;
-        color: #ffffff;
-        padding: 8px 14px;
-        border-radius: 6px;
-    }
-    
-    .nav-menu a.cta-nav:hover {
-        background-color: #4338ca;
-    }
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+            margin: 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #4f46e5;
+        }
+        
+        .nav-menu a.cta-nav {
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 8px 14px;
+            border-radius: 6px;
+        }
+        
+        .nav-menu a.cta-nav:hover {
+            background-color: #4338ca;
+        }
 
+        .form-section {
+            padding: 40px 0 60px 0;
+        }
 
-          h2 {
-              text-align: center;
-              color: #2c3e50;
-              margin-bottom: 25px;
-          }
-          .form-group {
-              margin-bottom: 18px;
-          }
-          label {
-              display: block;
-              margin-bottom: 8px;
-              font-weight: 600;
-              color: #4a5568;
-          }
-          input[type="text"], input[type="tel"], select, textarea {
-              width: 100%;
-              padding: 12px;
-              border: 1px solid #cbd5e1;
-              border-radius: 6px;
-              box-sizing: border-box;
-              font-size: 14px;
-          }
-          input:focus, select:focus, textarea:focus {
-              outline: none;
-              border-color: #3b82f6;
-              box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-          }
-          textarea {
-              resize: vertical;
-              height: 100px;
-          }
-          button {
-              width: 100%;
-              background-color: #3b82f6;
-              color: white;
-              padding: 14px;
-              border: none;
-              border-radius: 6px;
-              font-size: 16px;
-              font-weight: bold;
-              cursor: pointer;
-              transition: background-color 0.2s;
-          }
-          button:hover {
-              background-color: #2563eb;
-          }
-          .loading {
-              display: none;
-              text-align: center;
-              font-weight: bold;
-              color: #3b82f6;
-              margin-top: 15px;
-          }
-      </style>
-  </head>
-  <body>
-    <header>
+        .form-card {
+            background-color: #ffffff;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border: 1px solid #edf2f7;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1a202c;
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Style khusus untuk animasi transisi kolom tambahan */
+        .conditional-field {
+            display: none;
+            margin-top: 12px;
+            background-color: #f8fafc;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #4f46e5;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"], input[type="tel"], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            background-color: #fff;
+            color: #334155;
+            transition: all 0.2s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+            font-family: inherit;
+        }
+
+        button {
+            width: 100%;
+            background-color: #4f46e5;
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
+        }
+
+        button:hover {
+            background-color: #4338ca;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 640px) {
+            .form-section { padding: 20px 0; }
+            .form-card { padding: 20px; border-radius: 8px; }
+            h2 { font-size: 1.35rem; }
+            .nav-wrapper { flex-direction: column; text-align: center; }
+            .nav-menu { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
     <div class="container">
         <div class="nav-wrapper">
             <div class="logo-area">
@@ -161,98 +213,124 @@
     </div>
 </header>
 
-  <div class="container">
-      <h2>Formulir Servis Panggilan</h2>
-      
-      <form id="serviceForm" action="https://script.google.com/macros/s/AKfycbxQbynK6R6cmIC9BTPOmkMWOtr73PbmA8xMrYK3OaImPvNSJ0jetVfC2JdfTLZ6DycY/exec" method="POST">
-          
-          <div class="form-group">
-              <label for="jenis_layanan">Pilih Alat Elektronik:</label>
-              <select id="jenis_layanan" name="jenis_layanan" required>
-                  <option value="" disabled selected>-- Pilih Elektronik --</option>
-                  <option value="TV">TV</option>
-                  <option value="HP / Smartphone">HP / Smartphone</option>
-                  <option value="Kipas Angin">Kipas Angin</option>
-                  <option value="Mesin Cuci">Mesin Cuci</option>
-                  <option value="Setrika">Setrika</option>
-                  <option value="Pompa Air">Pompa Air</option>
-                  <option value="Magicom / Rice Cooker">Magicom / Rice Cooker</option>
-                  <option value="Alat Elektronik Lainnya">Alat Elektronik Lainnya</option>
-              </select>
-          </div>
+<div class="form-section">
+    <div class="container">
+        <div class="form-card">
+            <h2>Formulir Servis Panggilan</h2>
+            
+            <form id="serviceForm" action="https://script.google.com/macros/s/AKfycbyQTS6Ev_AJmYWCT_xDayIimRqPhJyTN3qd8PDW01ohrvrGg2GPU4QaJ4XDGr5GN_jU/exec" method="POST">
+                
+                <div class="form-group">
+                    <label for="jenis_layanan">Pilih Alat Elektronik:</label>
+                    <select id="jenis_layanan" name="jenis_layanan" required>
+                        <option value="" disabled selected>-- Pilih Elektronik --</option>
+                        <option value="TV">TV</option>
+                        <option value="HP / Smartphone">HP / Smartphone</option>
+                        <option value="Kipas Angin">Kipas Angin</option>
+                        <option value="Mesin Cuci">Mesin Cuci</option>
+                        <option value="Setrika">Setrika</option>
+                        <option value="Pompa Air">Pompa Air</option>
+                        <option value="Magicom / Rice Cooker">Magicom / Rice Cooker</option>
+                        <option value="Alat Elektronik Lainnya">Alat Elektronik Lainnya</option>
+                    </select>
 
-          <div class="form-group">
-              <label for="nama">Nama Lengkap:</label>
-              <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
-          </div>
+                    <!-- Kolom dinamis tambahan yang akan muncul jika opsi "Lainnya" dipilih -->
+                    <div id="kolomLainnyaWrapper" class="conditional-field">
+                        <label for="elektronik_lainnya">Sebutkan Alat Elektronik Anda:</label>
+                        <input type="text" id="elektronik_lainnya" name="elektronik_lainnya" placeholder="Contoh: Blender, Microwave, AC, dll.">
+                    </div>
+                </div>
 
-          <div class="form-group">
-              <label for="alamat">Alamat Lengkap:</label>
-              <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap penjemputan/panggilan" required></textarea>
-          </div>
+                <div class="form-group">
+                    <label for="nama">Nama Lengkap:</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda" required>
+                </div>
 
-          <div class="form-group">
-              <label for="merek">Merek Barang:</label>
-              <input type="text" id="merek" name="merek" placeholder="Contoh: Samsung, Miyako, Sharp, dll." required>
-          </div>
+                <div class="form-group">
+                    <label for="alamat">Alamat Lengkap:</label>
+                    <textarea id="alamat" name="alamat" placeholder="Masukkan alamat lengkap penjemputan/panggilan" required></textarea>
+                </div>
 
-          <div class="form-group">
-              <label for="telepon">Nomor Telepon / WhatsApp:</label>
-              <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 081234567xxx" required>
-          </div>
+                <div class="form-group">
+                    <label for="merek">Merek Barang:</label>
+                    <input type="text" id="merek" name="merek" placeholder="Contoh: Samsung, Miyako, Sharp, dll." required>
+                </div>
 
-          <div class="form-group">
-              <label for="keluhan">Keluhan / Kerusakan:</label>
-              <textarea id="keluhan" name="keluhan" placeholder="Ceritakan detail kerusakan barang Anda..." required></textarea>
-          </div>
+                <div class="form-group">
+                    <label for="telepon">Nomor Telepon / WhatsApp:</label>
+                    <input type="tel" id="telepon" name="telepon" placeholder="Contoh: 081234567xxx" required>
+                </div>
 
-          <button type="submit" id="submitBtn">Kirim Permintaan Services</button>
-          <div class="loading" id="loadingMsg">Sedang mengirim data, mohon tunggu...</div>
-      </form>
-  </div>
+                <div class="form-group">
+                    <label for="keluhan">Keluhan / Kerusakan:</label>
+                    <textarea id="keluhan" name="keluhan" placeholder="Ceritakan detail kerusakan barang Anda..." required></textarea>
+                </div>
 
-  <script>
-      const form = document.getElementById('serviceForm');
-      const submitBtn = document.getElementById('submitBtn');
-      const loadingMsg = document.getElementById('loadingMsg');
+                <button type="submit" id="submitBtn">Kirim Permintaan Services</button>
+                <div class="loading" id="loadingMsg">Sedang mengirim data, mohon tunggu...</div>
+            </form>
+        </div>
+    </div>
+</div>
 
-      form.addEventListener('submit', function(e) {
-          e.preventDefault(); // Mencegah reload halaman bawaan browser
-          
-          submitBtn.disabled = true;
-          submitBtn.style.backgroundColor = '#a1a1aa';
-          loadingMsg.style.display = 'block';
+<script>
+    const form = document.getElementById('serviceForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loadingMsg = document.getElementById('loadingMsg');
+    
+    // Inisialisasi elemen untuk logika kolom tambahan
+    const jenisLayananSelect = document.getElementById('jenis_layanan');
+    const kolomLainnyaWrapper = document.getElementById('kolomLainnyaWrapper');
+    const inputLainnya = document.getElementById('elektronik_lainnya');
 
-          // Mengirim data menggunakan Fetch API secara asynchronous
-          fetch(form.action, {
-              method: 'POST',
-              body: new FormData(form)
-          })
-          .then(response => response.json())
-          .then(data => {
-              loadingMsg.style.display = 'none';
-              submitBtn.disabled = false;
-              submitBtn.style.backgroundColor = '#3b82f6';
-              
-              if(data.result === 'success') {
-                  alert('Terima kasih! Permintaan servis Anda telah kami terima. Teknisi kami akan segera menghubungi Anda.');
-                  form.reset(); // Reset form jika sukses
-              } else {
-                  alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
-              }
-          })
-          .catch(error => {
-              loadingMsg.style.display = 'none';
-              submitBtn.disabled = false;
-              submitBtn.style.backgroundColor = '#3b82f6';
-              console.error('Error:', error);
-              // Terkadang Google Apps Script sukses memasukkan data tapi memicu CORS error di browser local.
-              // Kita beri notifikasi sukses cadangan jika data sebenarnya kemungkinan besar masuk.
-              alert('Permintaan telah dikirim! Mohon cek berkala WhatsApp Anda.');
-              form.reset();
-          });
-      });
-  </script>
+    // Menangani deteksi perubahan pada dropdown pilihan elektronik
+    jenisLayananSelect.addEventListener('change', function() {
+        if (this.value === 'Alat Elektronik Lainnya') {
+            kolomLainnyaWrapper.style.display = 'block';
+            inputLainnya.setAttribute('required', 'required'); // Menjadikan kolom wajib diisi jika muncul
+        } else {
+            kolomLainnyaWrapper.style.display = 'none';
+            inputLainnya.removeAttribute('required'); // Menghilangkan kewajiban isi jika disembunyikan
+            inputLainnya.value = ''; // Mengosongkan kembali isi input teks
+        }
+    });
 
-  </body>
-  </html>
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        submitBtn.disabled = true;
+        submitBtn.style.backgroundColor = '#a1a1aa';
+        loadingMsg.style.display = 'block';
+
+        fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form)
+        })
+        .then(response => response.json())
+        .then(data => {
+            loadingMsg.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = '#4f46e5';
+            
+            if(data.result === 'success') {
+                alert('Terima kasih! Permintaan servis Anda telah kami terima. Teknisi kami akan segera menghubungi Anda.');
+                kolomLainnyaWrapper.style.display = 'none'; // Sembunyikan kembali kolom dinamis
+                form.reset();
+            } else {
+                alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+            }
+        })
+        .catch(error => {
+            loadingMsg.style.display = 'none';
+            submitBtn.disabled = false;
+            submitBtn.style.backgroundColor = '#4f46e5';
+            console.error('Error:', error);
+            alert('Permintaan telah dikirim! Mohon cek berkala WhatsApp Anda.');
+            kolomLainnyaWrapper.style.display = 'none'; // Sembunyikan kembali kolom dinamis
+            form.reset();
+        });
+    });
+</script>
+
+</body>
+</html>
