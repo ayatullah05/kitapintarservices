@@ -1,0 +1,598 @@
+<html lang="id">
+<head>
+    <meta charset="UTF-8"></meta>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <title>Teknisi Perbaikan Elektronik</title>
+    <style>
+        /* ==========================================================================
+           RESET & DEFAULT STYLES
+           ========================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: #2d3748;
+            background-color: #f7fafc;
+            line-height: 1.6;
+        }
+
+        /* Container Layout */
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ==========================================================================
+           HEADER & NAVIGATION BAR
+           ========================================================================== */
+        header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-area img {
+            max-height: 40px;
+            width: auto;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #4f46e5;
+            text-decoration: none;
+            margin: 0;
+        }
+        
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .nav-menu a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-menu a:hover {
+            color: #4f46e5;
+        }
+        
+        .nav-menu a.cta-nav {
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+        }
+        
+        .nav-menu a.cta-nav:hover {
+            background-color: #4338ca;
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            background-color: #ffffff;
+            padding: 60px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .hero-flex {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+        
+        .hero-text {
+            flex: 1;
+            text-align: justify;
+        }
+        
+        .hero-image-area {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #1a202c;
+            line-height: 1.3;
+            margin: 0 0 15px 0;
+        }
+        
+        .hero-text h1 span {
+            color: #4f46e5;
+        }
+        
+        .hero-text p {
+            font-size: 1.05rem;
+            color: #4a5568;
+            margin: 0 0 30px 0;
+        }
+        
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background-color: #4338ca;
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            background-color: transparent;
+            color: #4f46e5;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 1px solid #4f46e5;
+            transition: all 0.2s;
+            text-align: center;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .avatar-placeholder {
+            max-width: 300px;
+            width: 80%;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .avatar-placeholder img {
+            width: 52vh;
+            height:40vh ;
+            display: block;
+        }
+
+        /* ==========================================================================
+           GLOBAL SECTION SETTINGS
+           ========================================================================== */
+        section {
+            padding: 70px 0;
+        }
+        
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin: 0 0 10px 0;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1rem;
+            color: #718096;
+            text-align: center;
+            margin: 0 0 45px 0;
+        }
+
+        /* ==========================================================================
+           ABOUT SECTION
+           ========================================================================== */
+        .about-box {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            border: 1px solid #edf2f7;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+        }
+        
+        .about-box p {
+            margin: 0 0 20px 0;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+        
+        .about-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==========================================================================
+           PORTFOLIO SECTION
+           ========================================================================== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .portfolio-col {
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .portfolio-img {
+            height: 200px;
+            background-color: #edf2f7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a0aec0;
+            font-size: 0.9rem;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .portfolio-info {
+            padding: 20px;
+            text-align: justify;
+        }
+        
+        .portfolio-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #4f46e5;
+            letter-spacing: 0.05em;
+            margin-bottom: 5px;
+            display: block;
+        }
+        
+        .portfolio-info h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #1a202c;
+        }
+        
+        .portfolio-info p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        /* ==========================================================================
+           SERVICES SECTION
+           ========================================================================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .services-col {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.02);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+        
+        .services-col h4 {
+            margin: 0 0 12px 0;
+            font-size: 1.15rem;
+            color: #1a202c;
+        }
+        
+        .services-col p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #4a5568;
+        }
+
+        /* ==========================================================================
+           CALL TO ACTION
+           ========================================================================== */
+        .cta-section {
+            background-color: #1e1b4b;
+            color: #ffffff;
+            text-align: center;
+            padding: 60px 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+        
+        .cta-section h3 {
+            font-size: 1.85rem;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+        }
+        
+        .cta-section p {
+            font-size: 1.05rem;
+            color: #c7d2fe;
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        
+        .cta-section .btn {
+            background-color: #ffffff;
+            color: #1e1b4b;
+        }
+        
+        .cta-section .btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #1e293b;
+            font-size: 0.9rem;
+        }
+        
+        .footer-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-right a {
+            color: #94a3b8;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.2s;
+        }
+        
+        .footer-right a:hover {
+            color: #ffffff;
+        }
+
+        /* ==========================================================================
+           MEDIA QUERIES (RESPONSIVE STYLES)
+           ========================================================================== */
+        @media (max-width: 968px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr; /* Portfolio jadi 1 kolom di tablet/HP */
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr); /* Layanan jadi 2 kolom di tablet */
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: static; /* Lepas sticky jika di HP agar hemat layar */
+            }
+            .nav-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-menu {
+                justify-content: center;
+                gap: 15px;
+            }
+            .hero-flex {
+                flex-direction: column-reverse; /* Gambar pindah ke atas teks di HP */
+                text-align: center;
+                gap: 30px;
+            }
+            .hero-text {
+                text-align: center;
+            }
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+            .btn-group {
+                justify-content: center;
+            }
+            .services-grid {
+                grid-template-columns: 1fr; /* Layanan jadi 1 kolom di HP */
+            }
+            .footer-wrapper {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-right a {
+                margin: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo-area">
+                    <img alt="Logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmM2xZX3OlKvgRSIdtACsuZqs4bB45YO3ojMw3ear7Xda2YKbbU3k_SubYu0o3oLTY9Bbiv66BAVzbzGyOZq65SkEcm21o8-CFXtX38phvjsvm5hcohPZjTTVLQUtDVQ8q7gooY0SdkSh4Kf87HJQfcsmmKO8931w-ssP6kkO27MIYGC26tSFBiwvV8zox/s50/kitapintar%20services%20(2).gif" />
+                    <h1 class="logo">Wahyu Ayatullah</h1>
+                </div>
+                <div class="nav-menu">
+                    <a href="#about">Tentang</a>
+                    <a href="#portfolio">Riwayat Perbaikan</a>
+                    <a href="#services">Layanan</a>
+                    <a class="cta-nav" href="#contact">Konsultasi</a>
+                </div>
+            </div>
+        </div>
+    </header>
+  
+    <section class="hero">
+        <div class="container">
+            <div class="hero-flex">
+                <div class="hero-text">
+                    <h1>Halo, saya <span>Wahyu Ayatullah</span>.<br />Saya seorang Teknisi Elektronika.</h1>
+                    <p>Membantu Anda menghidupkan kembali perangkat digital dan peralatan rumah tangga yang rusak dengan diagnosis akurat, komponen berkualitas, dan pengerjaan bergaransi.</p>
+                    <div class="btn-group">
+                        <a class="btn" href="#portfolio">Lihat Hasil Kerja</a>
+                        <a class="btn-secondary" href="hal1.html">Ajukan Perbaikan</a>
+                    </div>
+                </div>
+                <div class="hero-image-area">
+                    <div class="avatar-placeholder">
+                        <img alt="Wahyu Ayatullah" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhUxIP23I1oTkiXd85qCj7xcgQqeoinrwPIyciKx0KisPn4M2uhoLjvmLBVq9LwRxGYTTcNU4u_tqCT1nrzFOtGCFuLlWKTbFaVsLwRE5hrH9NE9OTymwgfmVGrK-QBup_ZNuSwieUpRnkCan3uCirEObFf-z9lk6KsWK4lEGe1pjFM4bc2LdpM9yQN6X4/s0/Desain%20tanpa%20judul%20(8).png" />     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Saya</h2>
+            <p class="section-subtitle">Dedikasi dan ketelitian dalam menangani setiap sirkuit elektronik</p>
+            
+            <div class="about-box">
+                <p>Saya adalah seorang teknisi profesional yang berfokus di bidang <strong>Perbaikan Hardware &amp; Pemecahan Masalah Sirkuit (Troubleshooting)</strong> dengan pengalaman praktis lebih dari 5 tahun. Saya menangani berbagai macam kendala elektronik mulai dari kerusakan sistem daya (mati total), penggantian komponen mikro (micro-soldering), hingga pemeliharaan preventif perangkat digital.</p>
+                <p>Saya mengutamakan transparansi dalam proses kerja—setiap perangkat akan didiagnosis secara menyeluruh sebelum proses estimasi biaya diajukan kepada pelanggan. Berbekal sertifikasi keahlian elektronika dan peralatan laboratorium modern, saya berkomitmen memberikan solusi perbaikan jangka panjang, bukan sekadar perbaikan sementara.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" style="background-color: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Riwayat Perbaikan Sukses</h2>
+            <p class="section-subtitle">Dokumentasi studi kasus dari beberapa unit perangkat yang berhasil diselamatkan baru-baru ini</p>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-col">
+                    <div class="portfolio-img">
+                         <img src="https://parto.id/asset/foto_produk/b5fb0ce2-bf1f-40ea-b204-6ba63a9dcac7.jpg"/>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-tag">Mikro-Soldering</span>
+                        <h4>Restorasi Laptop Mati Total (Short Circuit)</h4>
+                        <p>Mengidentifikasi korsleting pada jalur kapasitor utama di motherboard, melakukan penggantian IC Power, dan mengembalikan fungsi laptop normal 100%.</p>
+                    </div>
+                </div>
+                <div class="portfolio-col">
+                    <div class="portfolio-img">
+                         <img src="https://spesialistv.id/service-tv-bandung/wp-content/uploads/sites/3/2025/01/TV-LG-gelap-sebagian.jpg"/>
+                    </div>
+                    <div class="portfolio-info">
+                        <span class="portfolio-tag">Alat Rumah Tangga Digital</span>
+                        <h4>Perbaikan Smart TV LED Hilang Gambar</h4>
+                        <p>Mendiagnosis kerusakan pada modul backlight inverter. Melakukan rekondisi komponen power supply sehingga pelanggan menghemat biaya tanpa beli panel baru.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Layanan &amp; Keahlian</h2>
+            <p class="section-subtitle">Layanan profesional untuk memulihkan fungsionalitas aset elektronik Anda</p>
+            
+            <div class="services-grid">
+                <div class="services-col">
+                    <span class="service-icon">🛠️</span>
+                    <h4>Perbaikan Segala Jenis Elektronik</h4>
+                    <p>Reparasi menyeluruh untuk smartphone, tablet, laptop, tv, mesin cuci, kipas angin, ricecooker, pompa air, strika, dan alat elektronik lainnya yang mengalami gagal sistem, mati total, atau kerusakan layar fisik.</p>
+                </div>
+                <div class="services-col">
+                    <span class="service-icon">⚡</span>
+                    <h4>Reparasi Komponen Mikro</h4>
+                    <p>Pengerjaan presisi tinggi menggunakan mikroskop untuk reballing IC, perbaikan jalur PCB yang terputus, serta penggantian konektor yang rusak.</p>
+                </div>
+                <div class="services-col">
+                    <span class="service-icon">🛡️</span>
+                    <h4>Perawatan &amp; Inspeksi</h4>
+                    <p>Layanan pembersihan debu internal, penggantian thermal paste premium, serta uji beban daya (stress test) untuk mencegah kerusakan fatal di kemudian hari.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="padding-top: 0;">
+        <div class="container">
+            <div class="cta-section">
+                <h3>Perangkat Elektronik Anda Bermasalah?</h3>
+                <p>Jangan biarkan kerusakan kecil merusak produktivitas Anda. Konsultasikan gejala kerusakan perangkat Anda sekarang. Estimasi diagnosis awal diberikan gratis!</p>
+                <a class="btn" href="hal1.html">Pilih Keluhan Anda</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-wrapper">
+                <div class="footer-left">
+                    © 2026 Wahyu Ayatullah. All Rights Reserved.
+                </div>
+                <div class="footer-right">
+                    <a href="#">Tiktok</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
