@@ -39,6 +39,7 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 15px;
+        position: relative;
     }
     
     .logo-area {
@@ -88,6 +89,24 @@
     
     .nav-menu a.cta-nav:hover {
         background-color: #4338ca;
+    }
+
+    /* Tombol Hamburger Default (Hidden di Desktop) */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: #4a5568;
+        margin: 5px 0;
+        transition: 0.3s;
     }
 
     /* ==========================================================================
@@ -201,8 +220,8 @@
     }
 
     /* Background Iklan */
-    .bg-banner-atas   { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('URL_GAMBAR_IKLAN_ATAS'); background-color: #ff4d2d; }
-    .bg-banner-tv     { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqMbNWRjZQ7cVIsTC_BW5aRGqa82EVvSPcP4JTvBF5Yt1VIdujm3yvXiI&s=10'); }
+    .bg-banner-atas   { background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjXqS2STvvTBzFj-RgZiYX3P2TAi9VN7XNeJF2qKLG9i91mcr090gV2WNrxGhEwZj0czN8wVnW0xE9y3w9gLpLMiiqogohK_rAIgRh2DGgyULlpURYE00884wUN-TMdsGuKlSG8Hq6TKSjUh4FYS1GA83gzpoA3O7n0zR2BS1C3baYC71PJm7LdlECG17t/s475/no_markReactNative-snapshot-image_10.png'); background-color: #ff4d2d; }
+    .bg-banner-tv     { background-image: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.0)), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgrzrXlgfWZFP34Nt_uvdwXX1WIgd4n_extRc9PEdpR5mwgC4e2zMkh84PuzItg9shpegMJ-Qwz5IGn464RN2t9XwbO5TGBY0Mrh_4EQAkCAdobr6GL6rM0hULRx6akwa3JdadUCenY6sX14-Zn9tQTKPKh4da6ZLzkqQ_mOqPM7YdErhHvq_h7aXbM4YOp/s474/no_markReactNative-snapshot-image_9.png'); }
     .bg-banner-kipas  { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('URL_GAMBAR_IKLAN_KIPAS'); background-color: #ff4d2d; }
     .bg-banner-kulkas { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('URL_GAMBAR_IKLAN_KULKAS'); background-color: #ff4d2d; }
     .bg-banner-cuci   { background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('URL_GAMBAR_IKLAN_MESIN_CUCI'); background-color: #ff4d2d; }
@@ -245,19 +264,33 @@
 
     /* Animasi Berkedip */
     .blink {
-        animation: blink-animation 1.2s steps(2, start) infinite;
+        animation: blink-animation 3.2s steps(2, start) infinite;
     }
     @keyframes blink-animation { to { opacity: 0.4; } }
 
-    /* Responsive Breakpoints untuk Layran Kecil (HP) */
+    /* Responsive Breakpoints untuk Layar Kecil (HP) */
     @media (max-width: 600px) {
-        .nav-wrapper {
-            justify-content: center;
-            text-align: center;
+        .menu-toggle {
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 5px;
+        }
+        .logo-area {
+            padding-right: 40px;
         }
         .nav-menu {
-            justify-content: center;
+            display: none;
             width: 100%;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 10px;
+        }
+        .nav-menu.active {
+            display: flex;
         }
         .shopee-banner-horizontal {
             flex-direction: column;
@@ -291,7 +324,15 @@
                 <img alt="Logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmM2xZX3OlKvgRSIdtACsuZqs4bB45YO3ojMw3ear7Xda2YKbbU3k_SubYu0o3oLTY9Bbiv66BAVzbzGyOZq65SkEcm21o8-CFXtX38phvjsvm5hcohPZjTTVLQUtDVQ8q7gooY0SdkSh4Kf87HJQfcsmmKO8931w-ssP6kkO27MIYGC26tSFBiwvV8zox/s50/kitapintar%20services%20(2).gif" />
                 <h1 class="logo">KitaPintar Electronic Repair Services</h1>
             </div>
-            <div class="nav-menu">
+            
+            <!-- Tombol Garis Tiga (Hamburger Menu) -->
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <div class="nav-menu" id="nav-menu-list">
                 <a href="https://ayatullah05.github.io/kitapintarservices/#about">Tentang</a>
                 <a href="https://ayatullah05.github.io/kitapintarservices/#portfolio">Riwayat Perbaikan</a>
                 <a href="https://ayatullah05.github.io/kitapintarservices/#services">Layanan</a>
@@ -301,13 +342,13 @@
     </div>
 </header>
    
-<h1 class="h1">Jasa Perbaikan Elektronik Panggilan</h1>
+
 
 <div class="p-banner-wrapper">
-    <p>Perbaikan Handphone (Hp), TV, Kipas Angin, Kulkas, Mesin Cuci & lainnya</p>
+    <p>Perbaikan Handphone (Hp), TV, Kipas Angin, Kulkas, Ricecooker, Pompa Air, STB, Mesin Cuci, Laptop, Printer, Pemasangan Kabel Listrik Di Dalam Rumah & Perbaikan lainnya</p>
     
     <!-- Iklan Atas (Shopee) -->
-    <a href="URL_LINK_AFILIASI_ANDA_DISINI" target="_blank" rel="noopener noreferrer" class="shopee-banner-horizontal bg-banner-atas" style="max-width: 600px;">
+    <a href="https://s.shopee.co.id/AAFqhWGK1x" target="_blank" rel="noopener noreferrer" class="shopee-banner-horizontal bg-banner-atas" style="max-width: 600px;">
         <div class="shopee-banner-content">
             <span class="shopee-badge blink"><i class="fas fa-fire"></i> PROMO</span>
             <p class="shopee-text"><i class="fas fa-tools"></i> Sparepart Elektronik & Obeng Set Murah di Shopee!</p>
@@ -329,7 +370,7 @@
                 <h3>Perbaikan TV</h3>
                 <p>LCD, LED, Plasma</p>
             </a>
-            <a href="URL_LINK_AFILIASI_ANDA_DISINI" target="_blank" rel="noopener noreferrer" class="shopee-banner-horizontal bg-banner-tv">
+            <a href="https://s.shopee.co.id/W5LAJiSRo" target="_blank" rel="noopener noreferrer" class="shopee-banner-horizontal bg-banner-tv">
                 <div class="shopee-banner-content"><span class="shopee-badge blink"><i class="fas fa-tag"></i> DISKON</span><p class="shopee-text"><i class="fas fa-tv"></i> Beli Backlight TV</p></div>
                 <span class="shopee-btn blink">Lihat <i class="fas fa-chevron-right"></i></span>
             </a>
@@ -485,9 +526,22 @@
     </a>
 </div>
 
-<!-- SCRIPT LOGIK JAVASCRIPT (DISEDERHANAKAN) -->
+<!-- SCRIPT LOGIK JAVASCRIPT -->
 <script>
-  // Script klik kartu dihapus karena sudah diganti menggunakan struktur HTML tag <a> yang benar dan aman bagi SEO/Aksesibilitas.
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navMenuList = document.getElementById('nav-menu-list');
+
+    mobileMenu.addEventListener('click', () => {
+        navMenuList.classList.toggle('active');
+    });
+
+    // Menutup menu otomatis ketika salah satu tautan diklik
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenuList.classList.remove('active');
+        });
+    });
 </script>
 </body>
 </html>
