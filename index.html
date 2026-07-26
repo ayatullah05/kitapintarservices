@@ -1,7 +1,7 @@
 <html lang="id">
 <head>
-    <meta charset="UTF-8"></meta>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"></meta>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Teknisi Perbaikan Elektronik</title>
     <style>
         /* ==========================================================================
@@ -101,6 +101,24 @@
             background-color: #4338ca;
         }
 
+        /* Tombol Hamburger Default (Hidden di Desktop) */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #4a5568;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
         /* ==========================================================================
            HERO SECTION
            ========================================================================== */
@@ -190,25 +208,26 @@
         }
         
         /* ==========================================================================
-   PERBAIKAN AVATAR RESPONSIF
-   ========================================================================== */
-.avatar-placeholder {
-    width: 280px;          /* Mengunci ukuran lingkaran di desktop */
-    height: 280px;         /* Memastikan tingginya sama agar bulat sempurna */
-    max-width: 100%;       /* Supaya mengecil otomatis jika layar HP lebih kecil dari 280px */
-    aspect-ratio: 1 / 1;   /* Menjaga rasio kotak 1:1 di semua ukuran layar */
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;        /* Otomatis rata tengah saat mode mobile */
-}
+           PERBAIKAN AVATAR RESPONSIF
+           ========================================================================== */
+        .avatar-placeholder {
+            width: 280px;
+            height: 280px;
+            max-width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
 
-.avatar-placeholder img {
-    width: 100%;           /* Mengikuti lebar container lingkaran */
-    height: 100%;          /* Mengikuti tinggi container lingkaran */
-    object-fit: cover;     /* Memotong gambar secara proporsional agar tidak gepeng */
-    display: block;
-}
+        .avatar-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
         /* ==========================================================================
            GLOBAL SECTION SETTINGS
            ========================================================================== */
@@ -423,27 +442,48 @@
            ========================================================================== */
         @media (max-width: 968px) {
             .portfolio-grid {
-                grid-template-columns: 1fr; /* Portfolio jadi 1 kolom di tablet/HP */
+                grid-template-columns: 1fr;
             }
             .services-grid {
-                grid-template-columns: repeat(2, 1fr); /* Layanan jadi 2 kolom di tablet */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 768px) {
-            header {
-                position: sticky; /* Lepas sticky jika di HP agar hemat layar */
-            }
             .nav-wrapper {
-                flex-direction: column;
-                text-align: center;
+                position: relative;
             }
+            
+            /* Tampilkan tombol menu hamburger di sebelah kanan */
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 5px;
+            }
+
+            .logo-area {
+                padding-right: 40px; /* Ruang agar logo tidak tertutup tombol hamburger */
+            }
+
+            /* Ubah menu menjadi tersembunyi secara default dan tampil vertikal saat aktif */
             .nav-menu {
-                justify-content: center;
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
                 gap: 15px;
+                padding-top: 15px;
+                border-top: 1px solid #e2e8f0;
+                margin-top: 10px;
             }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
             .hero-flex {
-                flex-direction: column-reverse; /* Gambar pindah ke atas teks di HP */
+                flex-direction: column-reverse;
                 text-align: center;
                 gap: 30px;
             }
@@ -457,7 +497,7 @@
                 justify-content: center;
             }
             .services-grid {
-                grid-template-columns: 1fr; /* Layanan jadi 1 kolom di HP */
+                grid-template-columns: 1fr;
             }
             .footer-wrapper {
                 flex-direction: column;
@@ -478,7 +518,15 @@
                     <img alt="Logo" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgmM2xZX3OlKvgRSIdtACsuZqs4bB45YO3ojMw3ear7Xda2YKbbU3k_SubYu0o3oLTY9Bbiv66BAVzbzGyOZq65SkEcm21o8-CFXtX38phvjsvm5hcohPZjTTVLQUtDVQ8q7gooY0SdkSh4Kf87HJQfcsmmKO8931w-ssP6kkO27MIYGC26tSFBiwvV8zox/s50/kitapintar%20services%20(2).gif" />
                     <h1 class="logo">KitaPintar Electronic Repair Services</h1>
                 </div>
-                <div class="nav-menu">
+                
+                <!-- Tombol Garis Tiga (Hamburger Menu) -->
+                <button class="menu-toggle" id="mobile-menu" aria-label="Toggle Navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="nav-menu" id="nav-menu-list">
                     <a href="#about">Tentang</a>
                     <a href="#portfolio">Riwayat Perbaikan</a>
                     <a href="#services">Layanan</a>
@@ -599,6 +647,24 @@
             </div>
         </div>
     </footer>
+
+    <!-- Script JavaScript untuk Toggle Menu Mobile -->
+    <script>
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenuList = document.getElementById('nav-menu-list');
+
+        mobileMenu.addEventListener('click', () => {
+            navMenuList.classList.toggle('active');
+        });
+
+        // Menutup menu otomatis ketika salah satu tautan diklik (opsional)
+        const navLinks = document.querySelectorAll('.nav-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenuList.classList.remove('active');
+            });
+        });
+    </script>
 
 </body>
 </html>
