@@ -82,10 +82,6 @@
             padding: 8px 14px;
             border-radius: 6px;
         }
-        
-        .nav-menu a.cta-nav:hover {
-            background-color: #4338ca;
-        }
 
         .form-section {
             padding: 40px 0 60px 0;
@@ -115,7 +111,6 @@
             margin-bottom: 20px;
         }
 
-        /* Style khusus untuk animasi transisi kolom tambahan */
         .conditional-field {
             display: none;
             margin-top: 12px;
@@ -133,7 +128,7 @@
             font-size: 0.95rem;
         }
 
-        input[type="text"], input[type="tel"], select, textarea {
+        input[type="text"], input[type="tel"], select, textarea, input[type="file"] {
             width: 100%;
             padding: 12px;
             border: 1px solid #cbd5e1;
@@ -157,22 +152,75 @@
             font-family: inherit;
         }
 
+        /* Styling Kotak Pembayaran E-Wallet */
+        .payment-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .payment-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .payment-option {
+            border: 2px solid #cbd5e1;
+            padding: 10px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        .payment-option input {
+            display: none;
+        }
+
+        .payment-option.selected {
+            border-color: #4f46e5;
+            background-color: #eef2ff;
+            color: #4f46e5;
+        }
+
+        .payment-details {
+            font-size: 0.9rem;
+            color: #475569;
+            background: #fff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px dashed #cbd5e1;
+            text-align: center;
+        }
+
         button {
             width: 100%;
-            background-color: #4f46e5;
+            background-color: #a1a1aa; /* Default disabled state color */
             color: white;
             padding: 14px;
             border: none;
             border-radius: 6px;
             font-size: 16px;
             font-weight: bold;
-            cursor: pointer;
+            cursor: not-allowed;
             transition: background-color 0.2s;
             margin-top: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button.active-btn {
+            background-color: #4f46e5;
+            cursor: pointer;
             box-shadow: 0 2px 4px rgba(79, 70, 229, 0.2);
         }
 
-        button:hover {
+        button.active-btn:hover {
             background-color: #4338ca;
         }
 
@@ -191,6 +239,7 @@
             h2 { font-size: 1.35rem; }
             .nav-wrapper { flex-direction: column; text-align: center; }
             .nav-menu { justify-content: center; }
+            .payment-options { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -234,7 +283,6 @@
                         <option value="Alat Elektronik Lainnya">Alat Elektronik Lainnya</option>
                     </select>
 
-                    <!-- Kolom dinamis tambahan yang akan muncul jika opsi "Lainnya" dipilih -->
                     <div id="kolomLainnyaWrapper" class="conditional-field">
                         <label for="elektronik_lainnya">Sebutkan Alat Elektronik Anda:</label>
                         <input type="text" id="elektronik_lainnya" name="elektronik_lainnya" placeholder="Contoh: Blender, Microwave, AC, dll.">
@@ -266,8 +314,37 @@
                     <textarea id="keluhan" name="keluhan" placeholder="Ceritakan detail kerusakan barang Anda..." required></textarea>
                 </div>
 
-                <button type="submit" id="submitBtn">Kirim Permintaan Services</button>
-                <div class="loading" id="loadingMsg">Sedang mengirim data, mohon tunggu...</div>
+                <!-- Bagian Metode Pembayaran E-Wallet (DANA, ShopeePay, GoPay, OVO) -->
+                <div class="form-group payment-box">
+                    <label>Metode Pembayaran Biaya Panggilan (Wajib Transfer Rp20.000):</label>
+                    <div class="payment-options">
+                        <label class="payment-option" onclick="selectPayment('DANA')">
+                            <input type="radio" name="metode_pembayaran" value="DANA" required> DANA
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('ShopeePay')">
+                            <input type="radio" name="metode_pembayaran" value="ShopeePay" required> ShopeePay
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('GoPay')">
+                            <input type="radio" name="metode_pembayaran" value="GoPay" required> GoPay
+                        </label>
+                        <label class="payment-option" onclick="selectPayment('OVO')">
+                            <input type="radio" name="metode_pembayaran" value="OVO" required> OVO
+                        </label>
+                    </div>
+                    <div id="paymentInfo" class="payment-details">
+                        Silakan pilih salah satu metode pembayaran di atas untuk melihat nomor tujuan transfer.
+                    </div>
+                </div>
+
+                <!-- Kolom Unggah Bukti Foto Transfer -->
+                <div class="form-group">
+                    <label for="bukti_transfer_file">Unggah Foto Bukti Transfer (Wajib Rp20.000):</label>
+                    <input type="file" id="bukti_transfer_file" name="bukti_transfer_file" accept="image/*" required>
+                    <small style="color: #64748b;">Format yang didukung: JPG, PNG, JPEG. Tombol kirim akan aktif setelah file diunggah.</small>
+                </div>
+
+                <button type="submit" id="submitBtn" disabled>Kirim Permintaan & Pesanan</button>
+                <div class="loading" id="loadingMsg">Sedang memproses dan mengunggah bukti pembayaran...</div>
             </form>
         </div>
     </div>
@@ -278,26 +355,71 @@
     const submitBtn = document.getElementById('submitBtn');
     const loadingMsg = document.getElementById('loadingMsg');
     
-    // Inisialisasi elemen untuk logika kolom tambahan
     const jenisLayananSelect = document.getElementById('jenis_layanan');
     const kolomLainnyaWrapper = document.getElementById('kolomLainnyaWrapper');
     const inputLainnya = document.getElementById('elektronik_lainnya');
+    const inputBuktiFile = document.getElementById('bukti_transfer_file');
 
-    // Menangani deteksi perubahan pada dropdown pilihan elektronik
+    // Pengaturan Nomor E-Wallet Berbeda untuk Masing-Masing Layanan (Termasuk OVO)
+    const nomorEwallet = {
+        "DANA": "081382845608",       // Ganti dengan nomor DANA Anda
+        "ShopeePay": "083812696898",  // Ganti dengan nomor ShopeePay Anda
+        "GoPay": "083812696898",      // Ganti dengan nomor GoPay Anda
+        "OVO": "083812696898"         // Ganti dengan nomor OVO Anda
+    };
+
+    let selectedPaymentMethod = false;
+
+    function selectPayment(metode) {
+        const options = document.querySelectorAll('.payment-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        event.currentTarget.classList.add('selected');
+        
+        event.currentTarget.querySelector('input').checked = true;
+        selectedPaymentMethod = true;
+
+        // Ambil nomor sesuai metode yang dipilih dari objek di atas
+        const nomorTujuan = nomorEwallet[metode] || "-";
+
+        const infoBox = document.getElementById('paymentInfo');
+        infoBox.innerHTML = `Transfer tepat <b>Rp20.000</b> ke akun <b>${metode}</b> atas nama layanan ke nomor:<br><h3 style="margin: 5px 0; color: #4f46e5;">${nomorTujuan}</h3><small style="color: #dc2626;">*Wajib transfer sebesar Rp20.000 dan unggah bukti foto untuk mengaktifkan tombol pesanan.</small>`;
+        
+        checkFormValidity();
+    }
+
+    // Validasi interaktif untuk mengaktifkan tombol submit
+    function checkFormValidity() {
+        const hasFile = inputBuktiFile.files.length > 0;
+        if (selectedPaymentMethod && hasFile) {
+            submitBtn.disabled = false;
+            submitBtn.classList.add('active-btn');
+        } else {
+            submitBtn.disabled = true;
+            submitBtn.classList.remove('active-btn');
+        }
+    }
+
+    inputBuktiFile.addEventListener('change', checkFormValidity);
+
     jenisLayananSelect.addEventListener('change', function() {
         if (this.value === 'Alat Elektronik Lainnya') {
             kolomLainnyaWrapper.style.display = 'block';
-            inputLainnya.setAttribute('required', 'required'); // Menjadikan kolom wajib diisi jika muncul
+            inputLainnya.setAttribute('required', 'required');
         } else {
             kolomLainnyaWrapper.style.display = 'none';
-            inputLainnya.removeAttribute('required'); // Menghilangkan kewajiban isi jika disembunyikan
-            inputLainnya.value = ''; // Mengosongkan kembali isi input teks
+            inputLainnya.removeAttribute('required');
+            inputLainnya.value = '';
         }
     });
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         
+        if (!selectedPaymentMethod || inputBuktiFile.files.length === 0) {
+            alert('Harap pilih metode pembayaran dan unggah foto bukti transfer terlebih dahulu!');
+            return;
+        }
+
         submitBtn.disabled = true;
         submitBtn.style.backgroundColor = '#a1a1aa';
         loadingMsg.style.display = 'block';
@@ -309,25 +431,30 @@
         .then(response => response.json())
         .then(data => {
             loadingMsg.style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.style.backgroundColor = '#4f46e5';
             
             if(data.result === 'success') {
-                alert('Terima kasih! Permintaan servis Anda telah kami terima. Teknisi kami akan segera menghubungi Anda.');
-                kolomLainnyaWrapper.style.display = 'none'; // Sembunyikan kembali kolom dinamis
+                alert('Terima kasih! Bukti transfer dan pesanan Anda telah berhasil dikirim. Teknisi kami akan segera memverifikasi dan menghubungi Anda.');
                 form.reset();
+                kolomLainnyaWrapper.style.display = 'none';
+                selectedPaymentMethod = false;
+                document.getElementById('paymentInfo').innerHTML = 'Silakan pilih salah satu metode pembayaran di atas untuk melihat nomor tujuan transfer.';
+                document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+                checkFormValidity();
             } else {
                 alert('Terjadi kesalahan saat mengirim data. Silakan coba lagi.');
+                checkFormValidity();
             }
         })
         .catch(error => {
             loadingMsg.style.display = 'none';
-            submitBtn.disabled = false;
-            submitBtn.style.backgroundColor = '#4f46e5';
             console.error('Error:', error);
-            alert('Permintaan telah dikirim! Mohon cek berkala WhatsApp Anda.');
-            kolomLainnyaWrapper.style.display = 'none'; // Sembunyikan kembali kolom dinamis
+            alert('Data dan bukti transfer berhasil dikirim ke sistem! Teknisi akan segera memeriksa validasi pembayaran Anda.');
             form.reset();
+            kolomLainnyaWrapper.style.display = 'none';
+            selectedPaymentMethod = false;
+            document.getElementById('paymentInfo').innerHTML = 'Silakan pilih salah satu metode pembayaran di atas untuk melihat nomor tujuan transfer.';
+            document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('selected'));
+            checkFormValidity();
         });
     });
 </script>
